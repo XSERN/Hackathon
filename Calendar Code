@@ -1,0 +1,17 @@
+/**
+ * Adds a one hour long calendar event to the caller's default calendar
+ *
+ * @param {string} eventName the name of the event
+ * @param {string} startDatetime the starting date time of the event
+ */
+function createHourLongCalendarEvent(title, startDatetime, endDatetime) {
+  const eventName = typeof title === 'string' ? title : 'My event';
+  const startDate = typeof startDatetime === 'string' ? new Date(startDatetime) : new Date();
+  const endDate = typeof endDatetime === 'string' ? new Date(endDatetime) : new Date();
+
+  const sheetId = '1J3cVzUnjjaU1nd6XgyqKwltcK1JreGAf9naDyatx5og'
+  const sheet = SpreadsheetApp.openById(sheetId).getSheetByName('Calendars');
+  
+  // Append the new event details
+  sheet.appendRow([eventName, startDate, endDate]);
+}
